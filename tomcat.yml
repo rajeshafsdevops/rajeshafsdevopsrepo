@@ -1,0 +1,22 @@
+---
+- hosts: Centos-7-DevOps-server3.abc.com
+  remote_user: test
+  become: yes
+  gather_facts: yes
+  tasks:
+   - name: create directory
+     file: path=/usr/local/tomcat state=directory
+   - name: download Tomcat
+     get_url: url=https://mirrors.estointernet.in/apache/tomcat/tomcat-7/v7.0.108/bin/apache-tomcat-7.0.108.tar.gz dest=/opt
+   - name: Extract archive
+     unarchive: src=/opt/apache-tomcat-7.0.108.tar.gz dest=/usr/local/tomcat copy=no
+   - name: copy tomcat-users.xml
+     copy: src=tomcate-users.xml dest=/usr/local/tomcat/conf
+   - name: deploy sample application
+     copy: src=sample.war dest=/usr/local/tomcat/webapps
+   - name: start Tomcat
+     command: nohup /usr/local/tomcat/bin/startup.sh &
+ 
+
+
+

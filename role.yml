@@ -1,0 +1,7 @@
+---
+- hosts: Centos-7-DevOps-server3.abc.com
+  remote_user: test
+  become: yes
+  roles:
+    - webserver
+

@@ -1,0 +1,9 @@
+---
+- hosts: Centos-7-DevOps-server3.abc.com
+  remote_user: test
+  become: yes
+  tasks:
+   - name: install httpd package
+     yum: name: ['httpd', 'curl', 'telnet'] state=installed
+
+

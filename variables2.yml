@@ -1,0 +1,26 @@
+---
+- hosts: Centos-7-DevOps-server3.abc.com
+  remote_user: test
+  become: yes
+  vars:
+   pkg: httpd
+  vars_files:
+   - abc.yml
+  vars_prompt:
+   - name: pkg3
+     prompt: Enter package , pkg3 name
+     private: no   
+  tasks:
+   - name: install httpd package
+     yum: name={{pkg}} state=installed
+   - name: install {{pkg2}} package
+     yum : name={{pkg2}} state=installed
+   - name: install {{pkg3}} package
+     yum:  install {{pkg3}} state=installed
+   - name: copy index.html
+     copy: src=index.html dest=/var/www/html
+   - name: start the httpd service
+     service: name=httpd state=started
+     ignore_errors: True
+
+

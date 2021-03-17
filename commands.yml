@@ -1,0 +1,16 @@
+---
+- hosts: Centos-7-DevOps-server3.abc.com
+  remote_user: test
+  become: yes
+  tasks:
+   - name: create a file
+     command: sudo touch testfile creates=/home/user1/testfile
+   - name: list of files
+     shell: ls > /tmp/abc
+   - name: create directory
+     raw: systemctl start httpd
+   - name: execute the script
+     script: ./xyz.sh
+
+
+
